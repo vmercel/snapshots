@@ -1,0 +1,49 @@
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block title %} Home Page{% endblock %}
+{% block content %}
+<div class="container">
+<br>
+
+    <div class="header"{{title}}> </div>
+
+    <br>
+<style>
+        #image1 {
+                max-width: 100%;
+                height: auto;
+                }
+    </style>
+<div class="row mt-4">
+        <div class="col-md-10 offset-md-1">
+<div class="text-center">
+<center><h5> Dear {{user}},  <br> Click on the <span style="color:red">View Result Button </span> below to <span style="color:red">Check Result </span> of your CT Scan Upload
+
+                <hr>
+    <a href="{% url 'status' %}"><div class="btn btn-primary btn-lg">View Result</div></a>
+            </h5></center>
+
+</div>
+    <br>
+
+        </div>
+</div>
+
+
+<div class="col-md-6 mx-auto jumbotron">
+    <center><h5>Upload CT scan picture and check back within 24 hours </h5><br><h6>Upload Process might take a while - Thank you </h6></center> <hr>
+    <form method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-info" type="submit">Upload</button>
+    </form>
+<br>
+    </div>
+
+
+
+</div>
+{% endblock %}

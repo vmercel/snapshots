@@ -1,0 +1,90 @@
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block title %} Corona Positive{% endblock %}
+{% block content %}
+<div class="container">
+<center><h1>CT-Scan Image Uploads</h1></center>
+    <br>
+    <div class="text-center">
+    <a href="{% url 'last_positive_location' %}"><div class="btn btn-warning btn-lg">View Last Location of Positive Users</div></a>
+<!--    <a href="{% url 'last_positive_location' %}"><div class="btn btn-secondary btn-lg">View on Map Positive Users</div></a>-->
+    </div>
+    <br>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+    <div class="header"{{title}}> </div>
+
+    <br>
+
+    <div class="table-responsive">
+ 	<table id="myTable1" class='table'>
+		<thead>
+          <tr>
+            <th>S/NO</th>
+            <th>USER</th>
+            <th>LONGITUDE</th>
+            <th>LATITUDE</th>
+            <th>COVID STATUS</th>
+            <th>TIME</th>
+            <th>IMAGE</th>
+            <th>TRACK LOCATIONS</th>
+          </tr>
+        </thead>
+      {% for instance in queryset %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{instance.data.user}}</td>
+            <td><a href="">{{instance.data.longitude}}</a></td>
+            <td>{{instance.data.latitude}}</td>
+            <td>
+                {% if instance.status == True %}
+                <span style="color:red"> Positive</span>
+                {% elif instance.status == Null %}
+                Not Analalyzed
+                {% else %}
+                Negative
+              {% endif %}
+              </td>
+            <td>{{instance.created}}</td>
+              <td><img class="" width="100" height="90" src="{{ MEDIA_URL }}{{ instance.image.url }}" alt="ct-scan-image"> </td>
+            <td>
+                <a href="{% url 'perusermap1' instance.data.user_id %}"><div class="btn btn-danger">Locations History</div></a>
+
+            </td>
+</tr>
+{% endfor %}
+
+    </table>
+</div>
+<!--End of display table-->
+
+
+<!-- datatables start  -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script  type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(document).ready( function () {
+    $('#myTable1').DataTable();
+  } );
+  </script>
+<!-- datatables eend  -->  
+
+
+
+
+</div>
+{% endblock %}

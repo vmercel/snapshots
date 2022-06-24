@@ -1,0 +1,75 @@
+<!--navbar-->
+<!--#font-awwesome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+<!--#end font awesome-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Image-IoT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    {% if user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      {% if request.user.is_customer %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index8' %}">Upload CT scan</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index8' %}">Check Status</a>
+      </li>
+      {% endif %}
+      {% if request.user.is_employee %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'datalist' %}">Analyze CT Uploads</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'positive' %}">Positive Users</a>
+      </li>
+
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'team' %}">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
+      </li>
+
+    {% endif %}
+        {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">Contact Us</a>
+      </li>
+    {% endif %}
+
+    </ul>
+    {% if not user.is_authenticated %}
+
+
+    {% endif %}
+
+
+    <ul class="navbar-nav">
+        {% if request.user.is_authenticated %}
+          <li><a href="{% url 'logout' %}"><button class="btn btn-info"><i class="fa fa-user"></i> {{ user.username }} | Logout </button></a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}"><button class="btn btn-warning">  Login <i class="fas fa-sign-in-alt"></i></button></a></li>
+        {% endif %}
+    </ul>
+  </div>
+
+
+</nav>
+<!--end navbar-->
+
+

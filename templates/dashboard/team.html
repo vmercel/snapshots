@@ -1,0 +1,163 @@
+{% extends 'partials/base.html' %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">-->
+<!--<script src="https://use.fontawesome.com/58237cc8a6.js"></script>-->
+{% load static %}
+
+
+{% block title %} About Us{% endblock %}
+{% block content %}
+<div class="container">
+
+
+
+
+
+
+
+
+
+  <style>
+    .social-link {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      border-radius: 50%;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .social-link:hover,
+    .social-link:focus {
+      background: #ddd;
+      text-decoration: none;
+      color: #555;
+    }
+  </style>
+  <div class="bg-light py-5">
+    <div class="container py-5">
+      <div class="row mb-4">
+        <div class="col-lg-5">
+          <h2 class="display-4 font-weight-light">IOT Image Traking Team</h2>
+          <p class="font-italic text-muted">We help track covid around the world.</p>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <!-- Team item-->
+        <div class="col-xl-4 col-sm-6 mb-5">
+          <div class="bg-white rounded shadow-sm py-5 px-4"><img
+              src="https://res.cloudinary.com/segestic/image/upload/v1622028441/pic02profpic_ndlnxl.png" alt=""
+              width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Prof Dr Fadi Al-Turjman</h5><span class="small text-uppercase text-muted">Professor and
+              Researh Center Director</span><br>
+            <button class="btn btn-light px-5 rounded-pill shadow-sm" data-toggle="modal" data-target="#Bio1">Biography
+            </button>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-twitter"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- End-->
+
+        <!-- Team item-->
+        <div class="col-xl-4 col-sm-6 mb-5">
+          <div class="bg-white rounded shadow-sm py-5 px-4"><img
+              src="https://res.cloudinary.com/segestic/image/upload/v1622028441/pic03seg_hnuojs.jpg" alt="" width="100"
+              class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Olusegun Odewole</h5><span class="small text-uppercase text-muted">Web Expert</span>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-twitter"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- End-->
+
+        <!-- Team item-->
+        <div class="col-xl-4 col-sm-6 mb-5">
+
+          <div class="bg-white rounded shadow-sm py-5 px-4"><img
+              src="https://res.cloudinary.com/segestic/image/upload/v1622028442/pic01mubarak_czi4jc.png" alt=""
+              width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+            <h5 class="mb-0">Mubarak Auwal</h5><span class="small text-uppercase text-muted">Machine Learning
+              Expert</span>
+            <ul class="social mb-0 list-inline mt-3">
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-twitter"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a href="#" class="social-link"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- End-->
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="modal fade" id="Bio1" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="xyzxyzxyzz">Biography</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h2 class="font-weight-light text-center"> Biography </h2>
+          <p class="lead text-muted mb-0 text-justify">Prof. Dr. Fadi Al-Turjman received his Ph.D. in computer science
+            from Queen’s University, Canada, in 2011. He is a full professor and a research center director at Near East
+            University, Nicosia, Cyprus. Prof. Al-Turjman is the head of Artificial Intelligence Engineering Dept., and
+            a
+            leading authority in the areas of smart/intelligent IoT systems, wireless, and mobile networks’
+            architectures,
+            protocols, deployments, and performance evaluation in Artificial Intelligence of Things (AIoT). His
+            publication history spans over 350 SCI/E publications, in addition to numerous keynotes and plenary talks at
+            flagship venues. He has authored and edited more than 40 books about cognition, security, and wireless
+            sensor
+            networks’ deployments in smart IoT environments, which have been published by well-reputed publishers such
+            as
+            Taylor and Francis, Elsevier, IET, and Springer. He has received several recognitions and best papers’
+            awards
+            at top international conferences. He also received the prestigious Best Research Paper Award from Elsevier
+            Computer Communications Journal for the period 2015-2018, in addition to the Top ResearcherAward for 2018 at
+            Antalya Bilim University, Turkey. Prof. Al-Turjman has led a number of international symposia and workshops
+            in
+            flagship communication society conferences. Currently, he serves as book series editor and the lead
+            guest/associate editor for several top tier journals, including the IEEE Communications Surveys and
+            Tutorials
+            (IF 23.9) and the Elsevier Sustainable Cities and Society (IF 5.7), in addition to organizing international
+            conferences and symposiums on the most up to date research topics in AI and IoT.</p>
+        </div>
+        <div class="modal-footer">
+          <!-- some footer content -->
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  {% endblock %}

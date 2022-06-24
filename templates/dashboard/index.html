@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+
+{% block title %} Home Page{% endblock %}
+{% block content %}
+<div class="container">
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+    <div class="row mt-4">
+        <div class="col-md-10 offset-md-1">
+            {% if request.user.is_customer %}
+            <center>
+                <h5> Welcome {{user.username|upper}}, <span style="color:red"> <br> Kindly click on the Upload image
+                        Snapshot Button to Upload your image/SnapShots
+                        <br> Within 24 hours you will get response from our Team. - Thank you </span>
+                    <hr>
+                </h5>
+            </center>
+            {% endif %}
+            {{ m|safe }}
+            <br>
+            <br>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'partials/base.html' %}
+<br>
+
+{% block title %} Location{% endblock %}
+
+{% block content %}
+<!--<center><h1> Find My Location </h1></center>-->
+<br>
+<center><h3> Click button below to upload CT scan</h3></center>
+
+<div class="text-center">
+<button type="button" id = "find-me" class="btn btn-primary btn-lg"> <i class="fa fa-map-marker" aria-hidden="true"></i>  Grant Location Access</button>
+</div>
+<!--<button id = "find-me">Grant Location Access</button><br/>-->
+<p id = "status"></p>
+
+<p id = "map-link" target=""></p>
+
+<form action="{% url 'index50' %}" id="form44" method="POST">
+    {% csrf_token %}
+    <input type='hidden' name='latitude' id="latitude" >
+    <input type='hidden' name='longitude' id="longitude"  >
+    <br>
+<button type="submit" id="fm" class="btn btn-primary invisible">Proceed!</button>
+<!--    <button type="submit" class="btn btn-primary ">Proceed!</button>-->
+<!--    <button type="button" id="btn_submit2" class="btn btn-primary " disabled>Submit</button>-->
+</form>
+
+<script>
+function geoFindMe() {
+
+   const status = document.querySelector('#status');
+   const mapLink = document.querySelector('#map-link');
+
+<!--  mapLink.href = '';-->
+  mapLink.textContent = '';
+
+
+  function success(position) {
+    const latitude  = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    document.getElementById('latitude').value = position.coords.latitude;
+    document.getElementById('longitude').value = position.coords.longitude;
+    document.getElementById("fm").className = "btn btn-primary visible";
+
+<!--    status.textContent = '';-->
+<!--    mapLink.href = ` `;-->
+    mapLink.textContent = `Click Below Button to Proceed.....`;
+
+  }
+
+  function error() {
+    status.textContent = 'Unable to retrieve your location';
+  }
+
+  if(!navigator.geolocation) {
+    status.textContent = 'Geolocation is not supported by your browser';
+  } else {
+    status.textContent = 'Locating…';
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+
+}
+
+document.querySelector('#find-me').addEventListener('click', geoFindMe);
+
+</script>
+
+    {% endblock %}

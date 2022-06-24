@@ -1,0 +1,58 @@
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block title %} Home Page{% endblock %}
+{% block content %}
+<div class="container">
+
+    <div class="header"{{title}}> </div>
+
+
+    {% if results %}
+<center> <h1>You searched  for "{{ string }}"; the results are listed below.</h1> </center>
+<hr>
+
+
+    <div class="table-responsive">
+ 	<table class='table'>
+		<thead>
+          <tr>
+            <th>COUNT</th>
+            <th>USER</th>
+            <th>LONGITUDE</th>
+            <th>LATITUDE</th>
+            <th>TIME CREATED</th>
+          </tr>
+        </thead>
+      {% for instance in results %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{instance.user}}</td>
+            <td><a href="">{{instance.longitude}}</a></td>
+            <td>{{instance.latitude}}</td>
+            <td>{{instance.created}}</td>
+<!--            <td><a href=""><div class="btn btn-danger">Delete</div></a></td>-->
+          </tr>
+{% endfor %}
+    </table>
+
+{% else %}
+{% if string %}
+<center><h1>No results found.</h1></center>
+<!--{% else %}-->
+<!--<center><h1>Type a search query into the box above, and press "Submit" to search.</h1></center>-->
+{% endif %}
+{% endif %}
+
+    </div><!--End of display table-->
+
+
+
+
+
+
+
+</div>
+{% endblock %}

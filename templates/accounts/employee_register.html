@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+
+
+<br>
+    <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mx-auto">
+              <div class="card">
+                <div class="card-header text-black">
+                  <h2>Admin Register</h2>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'employee_register' %}" method="POST" novalidate>
+                      {% csrf_token %}
+                         {% for field in form.visible_fields %}
+                           <div class="form-group">
+                               {{ field.label_tag }} {% if field.field.required %}<span class="special_class">*</span>{% endif %}
+                                  {% render_field field class="form-control" %}
+                                    {% for error in field.errors %}
+                                      <span style="color:red">{{ error }}</span>
+                                    {% endfor %}
+                         {% endfor %}
+                             <input type="submit" value="Register" class="btn btn-block btn-primary">
+                           </div>
+                    </form>
+                 </div>
+                    </div>   
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+{% endblock %}

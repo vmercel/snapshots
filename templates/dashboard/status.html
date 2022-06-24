@@ -1,0 +1,53 @@
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block title %} Status{% endblock %}
+{% block content %}
+<div class="container">
+<br>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!--<center><h1>CT Scan Status</h1></center>-->
+
+<div class="row my-4">
+    <div class="col-md-6 offset-md-3">
+        <div class="border p-3 bg-white">
+            <center><h1>CT Scan Status</h1></center>
+            <hr>
+            <div class="alert alert-info">
+                {% if queryset.status == True %}
+                <center><h5>You are Corona Positive</h5></center>
+                {% elif queryset.status == False %}
+                <center><h5>You are Corona Negative</h5></center>
+                {% else %}
+                <center><h4>Analysis in Progress... </h4><br></center>
+                  <center> <h6> kindly check back later</h6></center>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+</div><!--End of display table-->
+
+
+
+
+
+
+
+</div>
+{% endblock %}

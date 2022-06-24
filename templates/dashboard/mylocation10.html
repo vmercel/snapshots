@@ -1,0 +1,100 @@
+{% extends 'partials/base.html' %}
+<br>
+
+{% block title %} Location{% endblock %}
+
+{% block content %}
+<!--<center><h1> Find My Location </h1></center>-->
+<br>
+<center><h3>Click button below to upload CT scan</h3></center>
+
+<div class="container">
+<p>Click the button to get your coordinates.</p>
+<button onclick="getLocation()">Get Your Location</button>
+<p id="demo"></p>
+<!--<button type="button" id="btn_submit" class="btn btn-primary " disabled>Submit</button>-->
+
+
+<!--    new seg-->
+    <form action="{% url 'index50' %}" method="POST">
+    {% csrf_token %}
+    <input type='' name='latitude' id ='lat1' >
+    <input type='' name='longitude' id ='long1' >
+    <br>
+            <button type="submit" class="btn btn-primary">Post Comment!</button>
+<!--    <button type="button" id="btn_submit2" class="btn btn-primary " disabled>Submit</button>-->
+</form>
+
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/script.js/2.0.2/script.min.js" integrity="sha512-UWtTDM6wtl/qutDD6i1JOGZGiEd92dveVzuLl8sMBkMHlOHcbZdexM7ZrKkeaugW7vhqDnWc2pPD/ohEV+BBbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+var pos;
+
+var $demo;
+var $lat1;
+var $long1;
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    $demo.text("Geolocation is not supported by this browser.");
+  }
+}
+
+function showPosition(position) {
+  pos = position;
+  var { latitude, longitude } = pos.coords;
+  $demo.html(`Latitude: ${latitude}<br>Longitude: ${longitude}`);
+  lat1.html = ${latitude};
+  $lat1.html(`Latitude: ${latitude}`);
+  $long1.html(`Longitude: ${longitude}`);
+  $('#btn_submit').attr("disabled", null);
+}
+
+
+
+
+$(document).ready(function() {
+  $demo = $("#demo");
+  $('#btn_submit').on('click', function() {
+    var data = pos.coords;
+    data.csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val();
+    $.post("/ajax/", data, function() {
+      alert("Saved Data!");
+    });
+  });
+});
+
+
+
+<!--$(document).on('submit', '#btn_submit', function(e){-->
+<!--      e.preventDefault();-->
+<!--      $.ajax(-->
+
+<!--       type='POST',-->
+<!--       url = '{% url 'index50' %}',-->
+<!--       data : {-->
+
+<!--           lat:position.coords.latitude,-->
+<!--           long: position.coords.longitude-->
+<!--           csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()-->
+<!--         },-->
+<!--        });-->
+
+<!--    });-->
+<!--  });-->
+<!--});-->
+
+
+
+
+
+
+</script>
+
+{% endblock %}

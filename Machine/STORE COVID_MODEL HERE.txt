@@ -1,0 +1,8 @@
+model filename
+
+covid_new_model1.h5
+
+
+#unuploaded
+
+large file size

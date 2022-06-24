@@ -1,0 +1,330 @@
+{% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block title %} Home Page{% endblock %}
+{% block content %}
+<div class="container">
+    <br>
+
+    <div class="header" {{title}}> </div>
+
+    <br>
+    <style>
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #535c68;
+        }
+
+        .wrapper {
+            margin: auto;
+            max-width: 640px;
+            padding-top: 60px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            /*border: 0.5px solid rgba(130, 130, 130, 0.25);*/
+            /*box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 
+              0 0 0 1px rgba(0, 0, 0, 0.1);*/
+        }
+
+        h1 {
+            color: #130f40;
+            font-family: 'Varela Round', sans-serif;
+            letter-spacing: -.5px;
+            font-weight: 700;
+            padding-bottom: 10px;
+        }
+
+        .upload-container {
+            background-color: rgb(239, 239, 239);
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .border-container {
+            border: 5px dashed rgba(198, 198, 198, 0.65);
+            /*   border-radius: 4px; */
+            padding: 20px;
+        }
+
+        .border-container p {
+            color: #130f40;
+            font-weight: 600;
+            font-size: 1.1em;
+            letter-spacing: -1px;
+            margin-top: 30px;
+            margin-bottom: 0;
+            opacity: 0.65;
+        }
+
+        #file-browser {
+            text-decoration: none;
+            color: rgb(22, 42, 255);
+            border-bottom: 3px dotted rgba(22, 22, 255, 0.85);
+        }
+
+        #file-browser:hover {
+            color: rgb(0, 0, 255);
+            border-bottom: 3px dotted rgba(0, 0, 255, 0.85);
+        }
+
+        .icons {
+            color: #95afc0;
+            opacity: 0.55;
+        }
+        /* new222 */
+        .file-upload {
+  background-color: #ffffff;
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.file-upload-btn {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  background: #1FB264;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #15824B;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.file-upload-btn:hover {
+  background: #1AA059;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.file-upload-btn:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  border: 4px dashed #1FB264;
+  position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+  background-color: #1FB264;
+  border: 4px dashed #ffffff;
+}
+
+.image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.drag-text {
+  text-align: center;
+}
+
+.drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: #15824B;
+  padding: 60px 0;
+}
+
+.file-upload-image {
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.remove-image {
+  width: 200px;
+  margin: 0;
+  color: #fff;
+  background: #cd4535;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #b02818;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.remove-image:hover {
+  background: #c13b2a;
+  color: #ffffff;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}
+        /* end new 2 */
+    </style>
+    <div class="row mt-4">
+        <div class="col-md-10 offset-md-1">
+            <div class="text-center">
+                <center>
+                    <h5> Dear {{user}}, <br> Click on the <span style="color:red">View Result Button </span> below to
+                        <span style="color:red">Check Result </span> of your Image Upload
+
+                        <hr>
+                        <a href="{% url 'status' %}">
+                            <div class="btn btn-primary btn-lg">View Result</div>
+                        </a>
+                    </h5>
+                </center>
+
+            </div>
+            <br>
+
+        </div>
+    </div>
+
+
+
+ <div class="file-upload">
+    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+  
+    <div class="image-upload-wrap">
+        <!-- newadd dj forms -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- end new add -->
+      <input class="file-upload-input" name="image" type='file' onchange="readURL(this);" accept="image/*" />
+      <div class="drag-text">
+        <h3>Drag and drop a file or select add Image</h3>
+      </div>
+    </div>
+    <div class="file-upload-content">
+      <img class="file-upload-image" src="#" alt="your image" />
+      <div class="image-title-wrap">
+        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+      </div>
+      <!-- new addd dj submit -->
+      <button class="btn btn-info" type="submit">Upload</button>
+    </form>
+    <!-- end new addd dj submit -->
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-md-6 mx-auto jumbotron">
+        <center>
+            <h5>Upload CT scan picture and check back within 24 hours </h5><br>
+            <h6>Upload Process might take a while - Thank you </h6>
+        </center>
+        <hr>
+
+        <br>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload() {
+  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+    $('.image-upload-wrap').addClass('image-dropping');
+  });
+  $('.image-upload-wrap').bind('dragleave', function () {
+    $('.image-upload-wrap').removeClass('image-dropping');
+});
+    </script>
+
+
+</div>
+{% endblock %}

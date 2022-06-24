@@ -1,0 +1,33 @@
+{% extends 'partials/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+
+
+<br>
+    <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mx-auto">
+              <div class="card">
+                <div class="card-header text-black">
+                  <h2>Registration</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                       <div class="col-lg-6">
+                        <a type="button" class="btn btn-block" href="{% url 'customer_register' %}">I am a User</a>
+                       </div>
+                       <div class="col-lg-6">
+                        <a type="button" class="btn btn-block" href="{% url 'employee_register' %}">I am an Admin</a>
+                       </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+{% endblock %}

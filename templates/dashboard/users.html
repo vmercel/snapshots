@@ -1,0 +1,44 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+
+{% block title %} List of Users{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="table-responsive">
+ 	<table class='table'>
+		<thead>
+          <tr>
+            <th>COUNT</th>
+            <th>USERNAME</th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>EMAIL</th>
+            <th>MAP VIEW</th>
+            <th>TABLE VIEW</th>
+          </tr>
+        </thead>
+      {% for instance in queryset %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{instance.username}}</td>
+            <td><a href="">{{instance.first_name}}</a></td>
+            <td><a href="">{{instance.last_name}}</a></td>
+            <td>{{instance.email}}</td>
+            <td><a href="{% url 'perusermap1' instance.id %}"><div class="btn btn-danger">View on Map</div></a></td>
+            <td><a href="{% url 'perusertable' instance.id %}"><div class="btn btn-warning">View on Table</div></a></td>
+          </tr>
+{% endfor %}
+
+    </table>
+</div><!--End of display table-->
+
+
+
+
+
+
+
+</div>
+{% endblock %}
